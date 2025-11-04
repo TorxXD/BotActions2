@@ -6,6 +6,7 @@ import random
 import threading
 import time  # Importa la biblioteca time
 from colorama import Fore, Style, init
+import os #Importar os para verificar la variable de entorno
 
 # Inicializa colorama para soporte de colores en la consola
 init()
@@ -36,9 +37,17 @@ def guardar_token(token):
 # Obtener el token
 token = leer_token()
 if not token:
-    token = input(f"{YELLOW}Por favor, introduce el token de tu bot de Discord:{RESET} ")
-    guardar_token(token)
-    print(f"{GREEN}Token guardado en {TOKEN_FILE}{RESET}")
+    #token = input(f"{YELLOW}Por favor, introduce el token de tu bot de Discord:{RESET} ") #Eliminar esta linea
+    #guardar_token(token) #Eliminar esta linea
+    print(f"{RED}No se encontró el token en el archivo o en la variable de entorno. El bot no se iniciará correctamente.{RESET}") #Mostrar alerta
+
+#Verificar si la variable de entorno DISCORD_TOKEN está presente
+if 'DISCORD_TOKEN' in os.environ:
+    token = os.environ['DISCORD_TOKEN']
+    print(f"{GREEN}Token obtenido de la variable de entorno DISCORD_TOKEN{RESET}")
+else:
+    print(f"{RED}La variable de entorno DISCORD_TOKEN no está configurada. El bot no se iniciará correctamente.{RESET}")
+    exit() #Salir del programa
 
 # Configuración del bot
 intents = discord.Intents.default()
