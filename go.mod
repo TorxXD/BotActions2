@@ -1,7 +1,4 @@
-module bot
-
-go 1.21
-
 require (
-	github.com/bwmarrin/discordgo v0.27.1
+	github.bwmarrin/discordgo v1.0.0
+	github.com/google/gopacket v1.1.19
 )
