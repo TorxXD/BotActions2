@@ -174,7 +174,7 @@ func handleCommand(s *discordgo.Session, command string) {
 	args := strings.Fields(command)
 	if len(args) >= 4 && args[1] == "udp-bypass" {
 		if len(args) != 5 {
-			s.ChannelMessageSend(s.ChannelID, "Usage: `!ataque udp-bypass ip port time`")
+			s.ChannelMessageSend(s.ChannelID, "`!ataque udp-bypass ip port time`")
 			return
 		}
 
